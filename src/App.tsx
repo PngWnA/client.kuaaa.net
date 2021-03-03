@@ -27,7 +27,7 @@ function App() {
         </Switch>
       </main>
       <footer>
-        <p>이 건 우 바 보</p>
+        <p>KUAAA</p>
       </footer>
     </Router>
   );
