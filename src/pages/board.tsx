@@ -1,8 +1,25 @@
-import React from "react"
-import PostList from "../components/postList";
+import React, {useEffect} from "react"
 import ArticleTableBody from "../components/ArticleTableBody";
 
+import './board.scss'
+
+import {Layout, Breadcrumb} from "antd";
+import {useDispatch} from "react-redux";
+import {currentPage} from "../modules/page";
+
+const {Content} = Layout;
+
 function Board() {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(currentPage({
+            currentPage: 'board',
+            headerMenuItemKey: '3',
+            sideBarMenuItemKey: '1'
+        }));
+    }, [dispatch]);
+
     const articleColumns = [
         {
             title: "작성자",
@@ -44,7 +61,22 @@ function Board() {
     ];
 
     return (
-        <ArticleTableBody columns={articleColumns} data={articleList}/>
+        <React.Fragment>
+            <Breadcrumb style={{margin: '16px 0'}}>
+                <Breadcrumb.Item>Board</Breadcrumb.Item>
+                <Breadcrumb.Item>Board1</Breadcrumb.Item>
+            </Breadcrumb>
+            <Content
+                className="site-layout-background"
+                style={{
+                    padding: 24,
+                    margin: 0,
+                    minHeight: 280,
+                }}
+            >
+                <ArticleTableBody columns={articleColumns} data={articleList}/>
+            </Content>
+        </React.Fragment>
     );
 }
 
